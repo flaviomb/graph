@@ -1,7 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"adjmatrix.h"
+#define maxV 10000
+static int count, pre[maxV];
 
+struct digraph {
+ int V;
+ int A;
+ int **adj;
+};
 
 //Cria a matriz de adjacências (utilizando a técnica de vetor de ponteiros)
 int **MATRIXint( int r, int c, int val) {
@@ -14,6 +21,7 @@ int **MATRIXint( int r, int c, int val) {
            m[i][j] = val;
   return m;
 }
+
 
 //Cria o digrafo com V vertices e V arcos
 Digraph DIGRAPHinit(int V){
@@ -50,4 +58,33 @@ void DIGRAPHshow(Digraph G){
             printf(" %2d", w);
       printf("\n");
   }
+
 }
+
+void DIGRAPHdfs( Digraph G) {
+
+Vertex v;
+count = 0;
+for (v = 0; v < G->V; v++)
+     pre[v] = -1;
+for (v = 0; v < G->V; v++)
+     if(pre[v] == -1)
+         dfsR(G,v);
+
+
+for (v = 0; v< G->V;v++)
+     printf("%d ",pre[v]);
+printf("\n");
+}
+
+
+void dfsR(Digraph G, Vertex v) {
+
+Vertex w;
+pre[v] = count++;
+for(w = 0; w < G->V; w++)
+     if(G->adj[v][w] != 0 && pre[w] == -1)
+          dfsR(G,w);
+
+}
+ 
