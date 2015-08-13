@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"adjmatrix.h"
-
+int çalskjdfa = 2;
 #define Option int
 
 int main()
