@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"adjmatrix.h"
-int çalskjdfa = 2;
 #define Option int
 
 int main()
@@ -14,14 +13,15 @@ int main()
 	scanf("%d", &V);
 	G = DIGRAPHinit(V);
 			
-	while(opt != 5)
+	while(opt != 6)
 	{
 		printf("\n==== Options ===== \n");
 		printf("\nOption 1: insert an arc. \n");
 		printf("\nOption 2: remove an arc.\n");
 		printf("\nOption 3: show the digraph\n");
 		printf("\nOption 4: use dfs algorithm\n");
-		printf("\nOption 5: quit\n");		
+		printf("\nOption 5: is there a path between two vertex?: \n");
+		printf("\nOption 6: quit\n");		
 		printf("\nEnter the option: "); 
 		scanf("%d",&opt);	
 		
@@ -47,10 +47,17 @@ int main()
 			break;
 		case(4):
 			printf("\n==== Option 4 selected (use dfs algorithm) ====\n");
-			printf("\nEnter the initial vertex: ");
-			scanf("%d", &v);			
 			DIGRAPHdfs(G);
 			break;
+		case(5):
+			printf("\n==== Option 5 selected (is there a path between two vertex?) \n");
+			printf("\nEnter the vertex v and w: ");
+			scanf("%d %d", &v, &w);
+			if (DIGRAPHreach(G,v,w))
+				printf("\nYES!\n");
+			else
+				printf("\nNO!\n");		
+
 		default:
 			printf("\n==== Option 5 selected (quit) =====\n");
 		}	

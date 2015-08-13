@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"adjmatrix.h"
 #define maxV 10000
-static int count, pre[maxV];
+static int count, pre[maxV],lbl[maxV];
 
 struct digraph {
  int V;
@@ -71,7 +71,6 @@ for (v = 0; v < G->V; v++)
      if(pre[v] == -1)
          dfsR(G,v);
 
-
 for (v = 0; v< G->V;v++)
      printf("%d ",pre[v]);
 printf("\n");
@@ -87,4 +86,23 @@ for(w = 0; w < G->V; w++)
           dfsR(G,w);
 
 }
- 
+
+int DIGRAPHreach( Digraph G, Vertex s, Vertex t) {
+
+Vertex w;
+for (w = 0; w< G->V; w++)
+     lbl[w] = 0;
+reachR(G,s);
+if (lbl[t] == 0) return 0;
+else return 1;
+}
+
+void reachR (Digraph G, Vertex v) {
+
+Vertex w;
+lbl[v] = 1;
+for (w = 0; w < G->V; w++)
+  if(G->adj[v][w] == 1 && lbl[w] == 0)
+	reachR(G,w);
+}
+

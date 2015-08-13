@@ -9,3 +9,5 @@ void DIGRAPHremoveA(Digraph G, Vertex v, Vertex w);
 void DIGRAPHshow(Digraph G);
 void DIGRAPHdfs( Digraph G);
 void dfsR(Digraph G, Vertex v);
+void reachR (Digraph G, Vertex v);
+int DIGRAPHreach( Digraph G, Vertex s, Vertex t);
